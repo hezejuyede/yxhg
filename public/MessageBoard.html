@@ -1,0 +1,291 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>四川广安发电有限责任公司监控主页</title>
+    <link rel="stylesheet" type="text/css" href="./css/base.css">
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
+    <script src="js/jquery-1.4.4.min.js"></script>
+    <script src="./js/pages-min.js"></script>
+    <!--[if IE]>
+    <script src="js/html5shiv.js"></script>
+    <![endif]-->
+    <style>
+        .paging{
+            display: inline-block;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .pp{
+            display: inline-block;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .paging ul{
+            padding: 0;
+            margin: 0;
+            display: inline-block;
+            float: left;
+        }
+        .paging li{
+            display: inline-block;
+            float: left;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+        .paging li:hover{
+            background-color: #ddd;
+        }
+        .paging-selecte{
+            background-color: #4CAF50!important;
+            color: #fff!important;
+        }
+        .paging-selecte:hover{
+            background-color: #4CAF50!important;
+            color: #fff!important;
+        }
+        .paging input[type='text'],.paging input[type='button']{
+            display: inline-block;
+            margin-top: 0px;
+            border:1px solid #ccc;
+        }
+        .paging input[type='text']{
+            height:25px;
+            width: 50px;
+            border-right: none;
+        }
+        .paging input[type='button']{
+            height:29px;
+            border-left: none;
+            background-color: #fff;
+            cursor: pointer;
+        }
+        .paging ul:nth-child(2){
+            margin-left: 10px;
+        }
+        .a{
+            font-family: "Microsoft YaHei", "微软雅黑", "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+            text-align: center;
+            margin: 0 200px;
+            margin-top: 70px;
+            background-color: #fff;
+            min-height: 300px;
+            border-radius: 10px;
+            font-size: 16px;
+            padding: 10px;
+            box-sizing:border-box;
+        }
+        .a p{
+            text-align: left;
+            margin: 15px 100px;
+            line-height:30px;}
+        body{
+            background-color: #f0f0f0;
+        }
+        .header-right{
+            line-height: 40px;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+
+
+        .centerPage{
+            width: 95%;
+            height: 85%;
+            margin: 0 auto;
+            padding-top: 10px;
+        }
+        .messageTemplate{
+            height: 9%;
+            background-color: #ffffff;
+            margin-bottom: 0.5%;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+        .TemplateTop{
+            width: 100%;
+            height: 40%;
+            background-color: #7EC4CC;
+            font-size: 12px;
+        }
+        .TemplateTopLeftName{
+          margin-left: 20px;
+            color: #ffffff;
+            margin-right: 20px;
+        }
+        .TemplateTopLeftPhone{
+            color: #ffffff;
+        }
+        .TemplateDelete{
+            margin-left: 20px;
+            color: #c81623;
+            margin-right: 20px;
+        }
+        .TemplateTime{
+            color: #ffffff;
+        }
+         .TemplateBottom{
+             text-align: center;
+             font-size: 12px;
+             line-height: 15px;
+             color: #232323;
+         }
+
+
+
+
+        .paginationDiv{
+            width: 100%;
+            margin: 0  auto;
+            text-align: center;
+            position: absolute;
+            bottom: 25px;
+        }
+        .footer{
+            background-color: #BEBEBE;
+        }
+    </style>
+</head>
+<body>
+<div class="YW-home">
+    <div class="header">
+        <div class="header-left">
+            <img src="img/logoIndex1.png" style="height: 30px">
+        </div>
+        <div class="header-right fl">
+            <div class="" id="backHome">返回监控首页</div>
+        </div>
+    </div>
+    <div class="center" id="center">
+        <div class="centerPage" id="centerPage">
+
+
+
+        </div>
+        <div class="paginationDiv">
+            <div class="paging"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p class="">Copyright © 2018 中国华电集团四川广安发电有限责任公司 版权所有,网站开发维护：山东英伟电子技术有限公司</p>
+    </div>
+
+</div>
+
+<script>
+    window.onload = function () {
+        getDivWidth();
+        getMessagePage();
+    };
+    //动态获得 中间的高度
+    function getDivWidth() {
+        var w = document.body.scrollHeight;
+        var center = document.getElementById("center");
+
+        center.style.height = (w - 60) + "px";
+
+    }
+    //获得留言显示
+    function getMessagePage(){
+        var P= window.location.search;
+        var Page = P.slice(1);
+        if (Page !== null) {
+            jQuery.ajax({
+                type: 'POST',
+                url: 'getMessageList',
+                contentType: "application/x-www-form-urlencoded",
+                data:{Page:Page},
+                dataType: 'json',
+                success: function (data) {
+                    var page = data.page;
+                    var list = data.list;
+                    console.log(list)
+                    $(".paging").Page({
+                        Pages:page,
+                        Page:Page,
+                        PageOn:function(e){
+                          window.location=("/MessageBoard.html?" + e)
+                        },
+                        JumpOn:function(e){
+                            window.location=("/MessageBoard.html?" + e)
+                        },
+                        ActiveClass:"paging-selecte",
+                    });
+                    $(list).each(function (i,e) {
+
+                        $("#centerPage").append(" <div class=\"messageTemplate\" >\n" +
+                            "                <div class=\"TemplateTop fl\">\n" +
+                            "                    <div class=\"TemplateTopLeft fl\">\n" +
+                            "                        <div class=\"TemplateTopLeftName fl\"><span >用户名：</span> <span class='messageUserName'>"+e.messageUserName+"</span></div>\n" +
+                            "                        <div class=\"TemplateTopLeftPhone fl\"><span>电话：：</span><span>"+e.messagePhone+"</span></div>\n" +
+                            "                    </div>\n" +
+                            "                    <div class=\"TemplateTopRight fr\">\n" +
+                            "                        <div class=\"TemplateDelete fr\" >删除</div>\n" +
+                            "                        <div class=\"TemplateTime fr\"><span '>留言时间：</span><span class='messageTime'>"+e.messageTime+"</span></div>\n" +
+                            "                    </div>\n" +
+                            "                </div>\n" +
+                            "                <div class=\"TemplateBottom\">"+e.messageContent+"</div>\n" +
+                            "            </div>")
+                    })
+                }
+            });
+        }
+    }
+
+
+    //删除某个留言
+    $(".TemplateDelete").live("click", function () {
+        var P = window.location.search;
+        var Page = P.slice(1);
+        var index = $(".TemplateDelete").index(this);
+        var name = $(".messageUserName");
+        var time = $(".messageTime");
+        var messageUserName = name[index].innerHTML;
+        var messageTime = time[index].innerHTML;
+
+        var ajax = function (P, I) {
+            jQuery.ajax({
+                type: 'POST',
+                url: 'deleteMessage',
+                contentType: "application/x-www-form-urlencoded",
+                data: {"messageUserName": P, "messageTime": I},
+                dataType: 'json',
+                success: function (data) {
+                    if (data === "1") {
+                        alert("删除成功");
+                        window.location = ("/MessageBoard.html?" + Page)
+                    }
+                    else {
+                        alert("删除失败")
+                    }
+                }
+            });
+        }
+        var r = confirm("是否删除该留言");
+        if (r === true) {
+            ajax(messageUserName, messageTime)
+        }
+    });
+
+    //返回主页
+    $("#backHome").click(function () {
+        window.location = "/"
+    });
+
+
+
+
+</script>
+</body>
+</html>
+
+

@@ -1,0 +1,356 @@
+/*页面布局开始*/
+
+.header {
+    height: 40px;
+    background: url("../img/header.png");
+}
+
+.header-left {
+    float: left;
+    margin-left: 10px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #ffffff;
+}
+.header-left a{
+    margin-left: 50px;
+    color: #ffffff;
+}
+.header-right {
+    float: right;
+    margin-right: 100px;
+}
+.userName {
+    width: 80px;
+    height: 40px;
+    text-align: center;
+    float: left;
+    line-height: 40px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.header-right-userInfo {
+    float: left;
+    margin-left: 15px;
+    margin-right: 20px;
+    text-align: center;
+    line-height: 40px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.icon-yonghu {
+    margin-right: 5px;
+    font-size: 18px;
+}
+
+.icon-tuichu {
+    margin-right: 5px;
+    font-size: 18px;
+}
+
+.outLogin {
+    float: left;
+    width: 80px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+#noLogin a {
+    line-height: 40px;
+    color: #ffffff;
+    font-size: 12px;
+
+}
+
+#noLogin a .icon-denglu {
+    font-size: 18px;
+    margin-right: 10px;
+
+}
+#main{
+    width: 100%;
+}
+#main-left {
+    float: left;
+    width: 15%;
+    height: 100%;
+    overflow-y:auto;
+    overflow-x: auto;
+}
+
+.changeWidth{
+    width: 20%;
+    text-align: left;
+    padding-left: 3%;
+    font-size: 12px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.main-center {
+    width: 70%;
+    float: left;
+    position: relative;
+}
+
+.main-center-leftChange {
+
+    width: 2.5%;
+    height: 50px;
+    color: #00B83F;
+    text-align: center;
+    line-height: 50px;
+    font-size: 16px;
+}
+
+.main-center-rightChange {
+    width: 2.5%;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    color: #00B83F;
+    font-size: 16px;
+}
+#aspectration {
+    margin-top: 5px;
+    width:95%;
+    height: 99.5%;
+    overflow-y:auto;
+    overflow-x:auto ;
+}
+
+.operation{
+    width: 70%;
+    margin: 0 auto;
+    height: 30px;
+    cursor: pointer;
+}
+.narrow{
+    width: 50%;
+    text-align: center;
+}
+.enlarge{
+    width: 50%;
+    text-align: center;
+    cursor: pointer;
+
+}
+
+
+
+.main-right {
+    float: left;
+    width: 15%;
+    background-color: #cfcfcf;
+    border-left:1px solid 	#E0E0E0;
+
+}
+.MaxMinValue-list{
+    height: 300px;
+    background-color: #BEBEBE;
+    overflow-y: scroll;
+}
+.templateList{
+    height: 30px;
+    margin: 2px  auto;
+    border-bottom: 1px solid #f0f0f0;
+}
+.templateList-left{
+    width: 10%;
+    text-align: center;
+    line-height: 30px;
+}
+.templateList-left img{
+    height: 16px;
+    margin: -3px auto 0 auto  ;
+
+}
+.templateList-center{
+    font-size: 12px;
+    width:70%;
+    text-align: center;
+    line-height: 30px;
+    display: block;
+    cursor: pointer;
+}
+.templateList-center-right{
+    width:20%;
+    text-align: center;
+    line-height: 30px;
+}
+.templateList-center-right button{
+    display: block;
+    width: 30px;
+    height: 20px;
+    font-size: 12px;
+    line-height: 20px;
+    margin:2.5px auto;
+    border: 0;
+    background-color: #4cae4c;
+    color: #ffffff;
+}
+.JKValue{
+    width: 95%;
+    height: 20px;
+    margin: 0 auto;
+    text-align: center;
+}
+.JKValue button{
+    float: left;
+    display: block;
+    width: 45%;
+    height: 20px;
+    margin-right: 2%;
+    margin-left: 2%;
+    background-color: #4cae4c;
+    color: #ffffff;
+    border: 0;
+}
+
+
+.TimedRefresh{
+    width: 100%;
+    height: 30px;
+    font-size: 12px;
+    line-height: 30px;
+}
+.TimedRefresh input{
+    width: 30px;
+}
+.TimedRefresh button{
+    width: 30px;
+    height: 30px;
+    border: 0;
+    background-color: #00B83F;
+    color: #f7f7f7;
+    text-align: center;
+    line-height: 30px;
+    font-size: 12px;
+}
+
+
+.clickSend{
+    height: 150px;
+    text-align: center;
+}
+
+.userNoLogin{
+    height: 30px;
+    line-height: 20px;
+}
+
+
+.userLogin{
+    width: 15%;
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+}
+.userLogin-top{
+    margin-bottom: 7px;
+
+}
+.userLogin textarea{
+    width: 98%;
+    background-color: #BEBEBE;
+    font-size: 14px;
+    padding-left: 5px;
+}
+
+.userLogin button{
+    width: 60%;
+    height: 30px;
+    background-color: #00B83F;
+    color: #f7f7f7;
+    text-align: center;
+    line-height: 30px;
+    font-size: 14px;
+    border: 0;
+    margin-top: 10px;
+}
+
+.modal{
+    width: 100%;
+    height: 100%;
+    position:fixed;
+    left: 0;
+    top: 0;
+    z-index: 9;
+    background-color: #333333;
+    opacity: 0.7;
+    filter:alpha(opacity=70);
+    display: none;
+}
+
+.modal-div {
+    width: 400px;
+    height:300px;
+    background-color: #F0F0F0;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.modal-GB{
+    width: 50px;
+    height: 50px;
+    margin: auto;
+    position: absolute;
+    top: -350px;
+    left:400px;
+    bottom: 0;
+    right: 0;
+    z-index: 999;
+    text-align: center;
+    line-height: 50px;
+}
+
+.modal-div-template{
+    width: 96%;
+    height: 40px;
+    line-height: 40px;
+    background-color: #ffffff;
+    margin: 10px auto;
+    padding-left: 10px;
+
+}
+
+.input input{
+    width: 180px;
+    height:100%;
+    padding-left: 10px;
+}
+
+
+.modal button{
+    display: block;
+    width: 50%;
+    height: 30px;
+    margin:  0 auto;
+    background-color: #00B83F;
+    color: #f7f7f7;
+    text-align: center;
+    line-height: 30px;
+    font-size: 14px;
+    border: 0;
+    margin-top: 10px;
+
+}
+
+
+.footer {
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+}

@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>四川广安发电有限责任公司下载页面</title>
+    <link rel="stylesheet" type="text/css" href="./css/zTreeStyle.css">
+    <!--[if IE]>
+    <script src="js/html5shiv.js"></script>
+    <![endif]-->
+    <style>
+        html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input, textarea, th, td, select iframe{
+            margin: 0;
+            padding: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+        html{
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            min-height: 100%;
+            font-family: "Microsoft YaHei";
+            font-size: 1rem;
+            color: #333;
+
+        }
+
+        .header {
+            height: 40px;
+            background: url("img/header.png");
+            text-align: center;
+            line-height: 40px;
+            color: #ffffff;
+            font-size: 20px;
+        }
+        .header-back{
+            float: left;
+        }
+        .header a{
+            position: relative;
+            left: 100px;
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .main {
+            background-color: #ffffff;
+
+        }
+        .main-div-title{
+            height: 50px;
+            line-height: 50px;
+            padding-left: 20px;
+        }
+        .main-div-list{
+           height: 550px;
+            padding-left: 10px;
+        }
+        .main-div{
+            width: 90%;
+            height: 600px;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            overflow-y: auto;
+        }
+
+        .footer {
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="header-back">
+        <a href="/" class="">返回首页</a>
+    </div>
+    <span>下载页面</span>
+</div>
+<div class="main" id="main">
+    <div class="main-div">
+        <div class="main-div-title">
+            下载列表
+        </div>
+        <div class="main-div-list">
+            <ul id="tree" class="ztree"></ul>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <p class="">Copyright © 2018 中国华电集团四川广安发电有限责任公司 版权所有,网站开发维护：山东英伟电子技术有限公司</p>
+</div>
+<script src="js/jquery-1.4.4.min.js"></script>
+<script src="js/jquery.ztree.all.min.js"></script>
+<script>
+    //页面加载设置下载列表和页面高度
+    window.onload = function () {
+        downloadList();  //下载列表
+        setMainHeight(); //页面高度
+    };
+
+    function downloadList() {
+        jQuery.ajax({
+            type: 'POST',
+            url: 'downloadList',
+            contentType: "application/x-www-form-urlencoded",
+            dataType: 'json',
+            success: function (data) {
+                var setting = {
+                    data: {
+                        simpleData: {
+                            enable: true,
+                            idKey: "id",
+                            pIdKey: "pId",
+                            rootPId: ""
+                        }
+                    },
+                    view: {
+                        dblClickExpand: false
+                    },
+                    callback: {
+                        onClick: zTreeOnClick
+                    }
+                };
+
+                function zTreeOnClick(event, treeId, treeNode) {
+                    var zTree = $.fn.zTree.getZTreeObj("tree");
+                    zTree.expandNode(treeNode);
+                    nodes = zTree.getSelectedNodes();
+                    var node = nodes[0];
+                    if (!node.isParent) {
+                        function getFilePath(treeObj) {
+                            if (treeObj == null) return "";
+                            var filename = treeObj.name;
+                            var pNode = treeObj.getParentNode();
+                            if (pNode != null) {
+                                console.log(getFilePath(pNode))
+                                filename = getFilePath(pNode) + "/" + filename;
+                            }
+                            return filename;
+                        }
+
+                        var name = getFilePath(treeNode);
+                        var url = "http://10.176.124.10/piweb/YWGADownload/" + name + " ";
+                        var a = document.createElement('a');
+                        a.setAttribute('download', '');
+                        a.setAttribute('href', url);
+                        a.click();
+                    }
+                }
+
+                var t = $("#tree");
+                var list = JSON.parse(data);
+                t = $.fn.zTree.init(t, setting, list);
+            }
+        });
+
+    }
+
+    function setMainHeight() {
+        var w = document.body.scrollHeight;
+        var main = document.getElementById("main");
+        main.style.height = (w - 60) + "px";
+
+    }
+
+</script>
+</body>
+</html>
+
+
+

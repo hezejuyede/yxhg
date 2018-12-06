@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>四川广安发电有限责任公司管理员登录页面</title>
+    <link rel="stylesheet" type="text/css" href="./css/base.css">
+    <!--[if IE]>
+    <script src="js/html5shiv.js"></script>
+    <![endif]-->
+    <style>
+
+
+
+
+
+
+
+        .header {
+            width: 1190px;
+            height: 100px;
+            padding-left: 50px;
+            font-size: 18px;
+            line-height: 100px;
+
+        }
+        .header p {
+            font-weight: bolder;
+            color: #002B66;
+        }
+        .header-img {
+            line-height: 100px;
+            float: left;
+            margin-right: 20px;
+        }
+
+        .header-img img {
+            height: 100px;
+        }
+
+        .header-title {
+            float: left;
+        }
+
+
+        .loginIndexCenter {
+            width: 1190px;
+            height: 400px;
+            margin:  0 auto;
+            background: url("/img/admLogin.png") no-repeat center center;
+            background-size: 100%;
+            position: relative;
+        }
+
+
+
+
+
+        .loginIndexCenter-login{
+            position: absolute;
+            right: 50px;
+            top: 25px;
+            width: 350px;
+            height: 350px;
+            background-color: #ffffff;
+            border-radius: 5%;
+        }
+
+        .loginIndexCenter-login-title{
+            height: 70px;
+            line-height: 70px;
+            text-align: center;
+            font-size: 18px;
+            color: #4cae4c;
+
+        }
+        .loginIndexCenter-login-username, .loginIndexCenter-login-password{
+            width: 90%;
+            margin: 0 auto 30px auto;
+            border: 1px solid #f0f0f0;
+            height: 40px;
+            padding-left: 10px;
+            position: relative;
+        }
+
+        .username-img{
+            float: left;
+            width: 30px;
+            height: 30px;
+            margin-top: 5px;
+            background:  url("/img/icons.png") no-repeat 6px 6px;
+
+        }
+
+        .username-password{
+            float: left;
+            width: 30px;
+            height: 30px;
+            margin-top: 5px;
+            background:  url("/img/icons.png") no-repeat -26px 6px;
+        }
+
+        .loginIndexCenter-login-username input,.loginIndexCenter-login-password input{
+            float: left;
+            width: 70%;
+            height: 30px;
+            line-height: 30px;
+            margin-top: 5px;
+            font-size: 18px;
+
+        }
+
+
+        .loginIndexCenter-login-Code{
+            width: 90%;
+            margin: 0 auto 30px auto;
+            height: 40px;
+            padding-left: 10px;
+
+        }
+        .errInfo{
+            float: right;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+
+
+        .loginIndexCenter-login-Code input{
+            width: 100px;
+            float: left;
+            height: 40px;
+            line-height: 40px;
+            border: 1px solid #f0f0f0;
+            font-size: 14px;
+            padding-left: 10px;
+        }
+
+        .CodeNumber{
+            float: left;
+            width: 100px;
+            height: 40px;
+            margin-left: 10px;
+            line-height: 40px;
+            text-align: center;
+            background-color: #f0f0f0;
+            color: #c81623;
+            font-size: 22px;
+        }
+        .CodeText{
+            float: left;
+            width: 80px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .loginIndexCenter-login-button{
+            width: 95%;
+            height: 50px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .loginIndexCenter-login button {
+            width: 150px;
+            height: 40px;
+            background-color: #4cae4c;
+            color: #ffffff;
+            border-radius: 10%;
+            font-size: 16px;
+            border: 0;
+        }
+
+        .footer {
+            margin:  0 auto;
+            width: 1190px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            font-size: 18px;
+            color: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="header-img">
+        <img src="./img/logo.png" alt="">
+    </div>
+    <p class="">四川广安发电有限责任公司</p>
+</div>
+<div class="loginIndexCenter">
+    <div class="loginIndexCenter-login">
+        <div class="loginIndexCenter-login-title">
+            管理员登录
+        </div>
+        <div class="loginIndexCenter-login-username">
+            <label>
+                <div class="username-img"></div>
+                <input type="text" placeholder="请输入用户名" id="userName" class="reg_user">
+                <span class="user_hint errInfo"></span>
+            </label>
+        </div>
+        <div class="loginIndexCenter-login-password">
+            <label>
+                <div class="username-password"></div>
+                <input type="password" placeholder="请输入密码" id="passWord" class="reg_password">
+                <span class="password_hint errInfo"></span>
+            </label>
+        </div>
+        <div class="loginIndexCenter-login-Code">
+            <input type="text" placeholder="请输入验证码" id="Code" class="reg_code">
+            <div class="CodeNumber" id="CodeNumber"></div>
+            <div class="CodeText" onclick="changeCode()">
+                换一张
+            </div>
+            <div class="codeErr" id="codeErr"></div>
+        </div>
+        <div class="loginIndexCenter-login-button">
+            <button id="login">
+                老用户登陆
+            </button>
+            <button id="register">
+                新用户注册
+            </button>
+        </div>
+
+    </div>
+</div>
+<div class="footer">
+    <span>@山东英伟电子技术有限公司开发维护</span>
+</div>
+<script src="js/jquery-1.4.4.min.js"></script>
+<script >
+    window.onload = function () {
+        createCode()
+    };
+
+    function changeCode() {
+        createCode()
+    }
+
+    function createCode() {
+        var code = '';
+        var CodeNumber = document.getElementById("CodeNumber");
+        var selectChar = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+        for (var i = 0; i < selectChar.length; i++) {
+            var charIndex = Math.floor(Math.random() * 36);
+            code += selectChar[charIndex];
+        }
+        var NowCode = code.slice(1, 5)
+        CodeNumber.innerText = NowCode
+    }
+
+    //登录
+    $(document).ready(function () {
+        var user_Boolean = false;
+        var password_Boolean = false;
+        var code_Boolean = false;
+        $('.reg_user').blur(function () {
+            if ((/^[a-z0-9_-]{2,30}$/).test($(".reg_user").val())) {
+                $('.user_hint').html("✔").css("color", "green");
+                user_Boolean = true;
+            }
+            else {
+                $('.user_hint').html("×").css("color", "red");
+                user_Boolean = false;
+            }
+        });
+        // password
+        $('.reg_password').blur(function () {
+            if ((/^[a-z0-9_-]{2,16}$/).test($(".reg_password").val())) {
+                $('.password_hint').html("✔").css("color", "green");
+                password_Boolean = true;
+            } else {
+                $('.password_hint').html("×").css("color", "red");
+                password_Boolean = false;
+            }
+        });
+        // code
+        $('.reg_code').blur(function () {
+            if ($("#Code").val().toLowerCase() === $("#CodeNumber").text().toLowerCase()) {
+                $('#codeErr').text("");
+                code_Boolean = true;
+            }
+            else if ($("#Code").val().toLowerCase() !== $("#CodeNumber").text().toLowerCase() && $("#Code").val().length > 0) {
+                $('#codeErr').text("验证码输入不正确").css("color", "red");
+                code_Boolean = false;
+            }
+            else if ($("#Code").val().length === 0) {
+                $('#codeErr').text("验证码输入不能为空").css("color", "red");
+                code_Boolean = false;
+            }
+        });
+        // click
+        $("#login").click(function () {
+            if (user_Boolean === true && password_Boolean === true && code_Boolean === true) {
+                jQuery.ajax({
+                    type: 'POST',
+                    url: 'admUserLogin',
+                    data: {
+                        "username": $("#userName").val(),
+                        "password": $("#passWord").val()
+                    },
+                    contentType: "application/x-www-form-urlencoded",
+                    dataType: 'json',
+                    success: function (rusult) {
+                        if (rusult.state === 2) {
+                            alert("登录成功");
+                            var userInfo = {
+                                username: rusult.username,
+                                useravatar: rusult.avatar
+                            };
+                            var UserState = rusult.state;
+                            userInfo = JSON.stringify(userInfo);
+                            UserState = JSON.stringify(UserState);
+                            localStorage.setItem("userInfos", userInfo);
+                            localStorage.setItem("UserStates", UserState);
+                            window.location = "/index.html"
+                        }
+                        else if (rusult === "-1") {
+                            alert("密码不正确")
+                        }
+                        else if (rusult === "2") {
+                            alert("没有这个用户")
+                        }
+                    },
+                });
+
+
+            }
+            else {
+                alert("信息填写不正确")
+            }
+        });
+    });
+
+    //前往注册
+     $("#register").click(function () {
+         window.location="/admRegister.html"
+     })
+
+</script>
+</body>
+</html>

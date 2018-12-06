@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>四川广安发电有限责任公司ActiveX主页</title>
+    <link rel="stylesheet" type="text/css" href="./css/base.css">
+    <script  src="js/jquery-1.4.4.min.js"></script>
+    <!--[if IE]>
+    <script src="js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div id="main-center" style="background-color:#000000">
+    <div id="aspectration"
+         style="width: 100%;
+         height: 100%; background-color: #000000">
+        <object classid="clsid:4F26B906-2854-11D1-9597-00A0C931BFC8"
+                id="Pbd1"
+                style="background-color: #000000"
+                width="100%"
+                height="100%">
+            <param name="_cx" value="24262">
+            <param name="_cy" value="16140">
+            <param name="ServerIniURL" value>
+            <param name="DisplayURL" value="http://10.176.124.10/piweb/jizu6/A16_2116.PDI">
+        </object>
+     </div>
+</div>
+</body>
+<script>
+    window.onload = function () {
+        getDivWidth();
+        getValue();
+    };
+    // 初始设置DIV大小
+    function getDivWidth() {
+        var w = document.body.scrollHeight;
+        var center = document.getElementById("main-center");
+        var aspectration = document.getElementById("aspectration");
+        var H = window.screen.height;
+        var W = window.screen.width;
+        var F = W / H;
+        var wo = aspectration.offsetWidth;
+        center.style.height = (w - 60) + "px";
+        if (F>1.24 && F<1.4) {
+            aspectration.style.height = wo+ "px"
+        }
+        else {
+            aspectration.style.height = (wo / 16) * 9 + "px"
+        }
+
+    }
+    //动态播放Object
+    function getValue() {
+        var URL = localStorage.getItem("URL");
+        URL = JSON.parse(URL);
+        if (URL !== null) {
+             $("#aspectration").html("<object classid=\"clsid:4F26B906-2854-11D1-9597-00A0C931BFC8\" id=\"Pbd1\" width=\"100%\" height=\"100%\"><param name=\"_cx\" value=\"24262\"><param name=\"_cy\" value=\"16140\"><param name=\"ServerIniURL\" value><param name=\"DisplayURL\" value="+ URL +"></object>")
+        }
+    }
+
+
+</script>
+</html>
