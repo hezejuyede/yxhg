@@ -5,17 +5,12 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>四川广安发电有限责任公司管理员登录页面</title>
+    <title>湖北兴发化工集团股份有限公司PI实时数据分析系统</title>
     <link rel="stylesheet" type="text/css" href="./css/base.css">
     <!--[if IE]>
     <script src="js/html5shiv.js"></script>
     <![endif]-->
     <style>
-
-
-
-
-
 
 
         .header {
@@ -26,10 +21,12 @@
             line-height: 100px;
 
         }
+
         .header p {
             font-weight: bolder;
             color: #002B66;
         }
+
         .header-img {
             line-height: 100px;
             float: left;
@@ -40,25 +37,21 @@
             height: 100px;
         }
 
-        .header-title {
-            float: left;
+        .headerBack {
+            margin-right: 50px;
+            cursor: pointer;
+            color: #409EFF;
         }
 
-
         .loginIndexCenter {
-            width: 1190px;
             height: 400px;
-            margin:  0 auto;
-            background: url("/img/admLogin.png") no-repeat center center;
+            margin: 0 auto;
+            background: url("/img/1.jpg") no-repeat center center;
             background-size: 100%;
             position: relative;
         }
 
-
-
-
-
-        .loginIndexCenter-login{
+        .loginIndexCenter-login {
             position: absolute;
             right: 50px;
             top: 25px;
@@ -68,7 +61,7 @@
             border-radius: 5%;
         }
 
-        .loginIndexCenter-login-title{
+        .loginIndexCenter-login-title {
             height: 70px;
             line-height: 70px;
             text-align: center;
@@ -76,7 +69,8 @@
             color: #4cae4c;
 
         }
-        .loginIndexCenter-login-username, .loginIndexCenter-login-password{
+
+        .loginIndexCenter-login-username, .loginIndexCenter-login-password {
             width: 90%;
             margin: 0 auto 30px auto;
             border: 1px solid #f0f0f0;
@@ -85,24 +79,24 @@
             position: relative;
         }
 
-        .username-img{
+        .username-img {
             float: left;
             width: 30px;
             height: 30px;
             margin-top: 5px;
-            background:  url("/img/icons.png") no-repeat 6px 6px;
+            background: url("/img/icons.png") no-repeat 6px 6px;
 
         }
 
-        .username-password{
+        .username-password {
             float: left;
             width: 30px;
             height: 30px;
             margin-top: 5px;
-            background:  url("/img/icons.png") no-repeat -26px 6px;
+            background: url("/img/icons.png") no-repeat -26px 6px;
         }
 
-        .loginIndexCenter-login-username input,.loginIndexCenter-login-password input{
+        .loginIndexCenter-login-username input, .loginIndexCenter-login-password input {
             float: left;
             width: 70%;
             height: 30px;
@@ -112,22 +106,21 @@
 
         }
 
-
-        .loginIndexCenter-login-Code{
+        .loginIndexCenter-login-Code {
             width: 90%;
             margin: 0 auto 30px auto;
             height: 40px;
             padding-left: 10px;
 
         }
-        .errInfo{
+
+        .errInfo {
             float: right;
             margin-right: 10px;
             margin-top: 10px;
         }
 
-
-        .loginIndexCenter-login-Code input{
+        .loginIndexCenter-login-Code input {
             width: 100px;
             float: left;
             height: 40px;
@@ -137,7 +130,7 @@
             padding-left: 10px;
         }
 
-        .CodeNumber{
+        .CodeNumber {
             float: left;
             width: 100px;
             height: 40px;
@@ -148,7 +141,8 @@
             color: #c81623;
             font-size: 22px;
         }
-        .CodeText{
+
+        .CodeText {
             float: left;
             width: 80px;
             height: 40px;
@@ -157,24 +151,33 @@
             margin-left: 10px;
             cursor: pointer;
         }
-        .loginIndexCenter-login-button{
+
+        .loginIndexCenter-login-button {
             width: 95%;
-            height: 50px;
+            height: 60px;
             margin: 0 auto;
             text-align: center;
         }
-        .loginIndexCenter-login button {
-            width: 150px;
-            height: 40px;
+
+        #login {
+            width: 200px;
+            height: 30px;
             background-color: #4cae4c;
             color: #ffffff;
             border-radius: 10%;
             font-size: 16px;
             border: 0;
+            cursor: pointer;
+        }
+
+        #register {
+            margin-top: 10px;
+            cursor: pointer;
+            color: #409EFF;
         }
 
         .footer {
-            margin:  0 auto;
+            margin: 0 auto;
             width: 1190px;
             height: 100px;
             line-height: 100px;
@@ -186,10 +189,14 @@
 </head>
 <body>
 <div class="header">
+    <div class="headerBack fl" id="headerBack">
+        <img src="./icon/back.png" alt="">
+        返回系统首页
+    </div>
     <div class="header-img">
         <img src="./img/logo.png" alt="">
     </div>
-    <p class="">四川广安发电有限责任公司</p>
+    <p class="">PI实时数据分析系统管理员登录页面</p>
 </div>
 <div class="loginIndexCenter">
     <div class="loginIndexCenter-login">
@@ -222,18 +229,18 @@
             <button id="login">
                 老用户登陆
             </button>
-            <button id="register">
+            <div id="register">
                 新用户注册
-            </button>
+            </div>
         </div>
 
     </div>
 </div>
 <div class="footer">
-    <span>@山东英伟电子技术有限公司开发维护</span>
+    <span>Copyright © 湖北兴发化工集团股份有限公司PI实时数据分析系统</span>
 </div>
 <script src="js/jquery-1.4.4.min.js"></script>
-<script >
+<script>
     window.onload = function () {
         createCode()
     };
@@ -338,9 +345,15 @@
     });
 
     //前往注册
-     $("#register").click(function () {
-         window.location="/admRegister.html"
-     })
+    $("#register").click(function () {
+        window.location = "/admRegister.html"
+    });
+
+    //返回首页
+    $("#headerBack").click(function () {
+        location.href = "/"
+        console.log()
+    })
 
 </script>
 </body>

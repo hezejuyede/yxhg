@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>四川广安发电有限责任公司值主页</title>
+    <title>湖北兴发化工集团股份有限公司PI实时数据分析系统值主页</title>
     <link rel="stylesheet" type="text/css" href="./css/base.css">
     <script src="js/jquery-1.4.4.min.js"></script>
     <!--[if IE]>
@@ -44,7 +44,19 @@
             margin: 10px auto;
             color: #232323;
         }
-
+        #value div{
+            width: 200px;
+            height: 50px;
+            overflow: hidden;
+            overflow-y: auto;
+        }
+        #name div{
+            float: left;
+            width: 200px;
+            height: 50px;
+            overflow: hidden;
+            overflow-y: auto;
+        }
         .max {
             width: 95%;
             height: 50px;
@@ -102,34 +114,73 @@
         <img src="icon/GB.png">
     </div>
     <div class="value-div">
-        <div class="value" id="value">
-            <img src="icon/SZ.png" style="height: 25px;margin-left: 20px;margin-right: 5px">
-            <span style="margin-right: 15px">值代码：</span>
+        <div class="value" >
+            <div class="fl">
+                <img src="icon/SZ.png" style="height: 25px;margin-left: 20px;margin-right: 5px">
+                <span style="margin-right: 15px">值代码：</span>
+            </div>
+            <div class="fl" id="value">
+
+            </div>
         </div>
-        <div class="value" id="name">
-            <img src="icon/mz.png" style="height: 23px;margin-left: 20px;margin-right: 5px">
-            <span style="margin-right: 15px">值名称：</span>
+        <div class="value" >
+            <div class="fl">
+                <img src="icon/mz.png" style="height: 23px;margin-left: 20px;margin-right: 5px">
+                <span style="margin-right: 15px">值名称：</span>
+            </div>
+            <div class="fl" id="name">
+
+            </div>
         </div>
 
-        <div class="max" id="max">
-            <img src="icon/max.png" style="height: 25px;margin-left: 20px;margin-right: 5px">
-            <span style="margin-right: 15px">最大值：</span>
+        <div class="max" >
+            <div class="fl">
+                <img src="icon/max.png" style="height: 25px;margin-left: 20px;margin-right: 5px">
+                <span style="margin-right: 15px">最大值：</span>
+            </div>
+
+            <div class="fl" id="max">
+
+            </div>
         </div>
-        <div class="min" id="min">
-            <img src="icon/min.png" style="height: 25px;margin-left: 20px;margin-right: 5px">
-            <span style="margin-right: 15px">最小值：</span>
+        <div class="min" >
+            <div class="fl">
+                <img src="icon/min.png" style="height: 25px;margin-left: 20px;margin-right: 5px">
+                <span style="margin-right: 15px">最小值：</span>
+            </div>
+
+            <div class="fl" id="min">
+
+            </div>
         </div>
-        <div class="sx" id="sx">
-            <img src="icon/SAX.png" style="height: 25px;margin-left: 20px;margin-right: 5px">
-            <span style="margin-right: 15px">上线值：</span>
+        <div class="sx" >
+            <div class="fl">
+                <img src="icon/SAX.png" style="height: 25px;margin-left: 20px;margin-right: 5px">
+                <span style="margin-right: 15px">上线值：</span>
+            </div>
+
+            <div class="fl" id="sx">
+
+            </div>
         </div>
-        <div class="xx" id="xx">
-            <img src="icon/XX.png" style="height: 25px;margin-left: 20px;margin-right: 5px">
-            <span style="margin-right: 15px">下线值：</span>
+        <div class="xx" >
+            <div class="fl">
+                <img src="icon/XX.png" style="height: 25px;margin-left: 20px;margin-right: 5px">
+                <span style="margin-right: 15px">下线值：</span>
+            </div>
+
+            <div class="fl" id="xx">
+
+            </div>
         </div>
-        <div class="xx" id="dq">
-            <img src="icon/dq.png" style="height: 25px;margin-left: 20px;margin-right: 5px">
-            <span style="margin-right: 15px">当前值：</span>
+        <div class="xx">
+            <div class="fl">
+                <img src="icon/dq.png" style="height: 25px;margin-left: 20px;margin-right: 5px">
+                <span style="margin-right: 15px">当前值：</span>
+            </div>
+            <div class="fl"  id="dq">
+
+            </div>
         </div>
     </div>
 </div>
@@ -147,19 +198,25 @@
             if (e.Tag === value) {
                 jQuery.ajax({
                     url: 'http://10.176.124.10:8099/ValueInfo.ashx',
-                    type: 'POST',
+                    type: 'GET',
                     data: {"Tag": value},
                     dataType: "jsonp",
                     jsonp: "callback",
                     jsonpCallback: "callBackName",
                     success: function (result) {
-                        $("#value").append("<span>" + result.Tag + "</span>");
-                        $("#name").append("<span>" + result.TagName + "</span>");
-                        $("#max").append("<span>" + e.Max + "</span>");
-                        $("#min").append("<span>" + e.Min + "</span>");
-                        $("#sx").append("<span>" + e.Limith + "</span>");
-                        $("#xx").append("<span>" + e.Limitl + "</span>");
-                        $("#dq").append("<span>" + result.CurrentValue + "</span>");
+                        if (result !=="") {
+                            $("#value").append("<div>" + result.Tag + "</div>");
+                            $("#name").append("<div>" + result.TagName + "</div>");
+                            $("#max").append("<div>" + e.Max + "</div>");
+                            $("#min").append("<div>" + e.Min + "</div>");
+                            $("#sx").append("<div>" + e.Limith + "</div>");
+                            $("#xx").append("<div>" + e.Limitl + "</div>");
+                            $("#dq").append("<div>" + result.CurrentValue + "</div>");
+                        }
+                        else {
+                            alert("该点在PI数据库中没有数据");
+                            window.location = "/";
+                        }
                     }
                 });
             }

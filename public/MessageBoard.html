@@ -14,63 +14,74 @@
     <script src="js/html5shiv.js"></script>
     <![endif]-->
     <style>
-        .paging{
+        .paging {
             display: inline-block;
             background: #f9f9f9;
             padding: 15px;
             border-radius: 5px;
             border: 1px solid #ddd;
         }
-        .pp{
+
+        .pp {
             display: inline-block;
             background: #f9f9f9;
             padding: 10px;
             border-radius: 5px;
             border: 1px solid #ddd;
         }
-        .paging ul{
+
+        .paging ul {
             padding: 0;
             margin: 0;
             display: inline-block;
             float: left;
         }
-        .paging li{
+
+        .paging li {
             display: inline-block;
             float: left;
             padding: 6px 12px;
             cursor: pointer;
         }
-        .paging li:hover{
+
+        .paging li:hover {
             background-color: #ddd;
         }
-        .paging-selecte{
-            background-color: #4CAF50!important;
-            color: #fff!important;
+
+        .paging-selecte {
+            background-color: #4CAF50 !important;
+            color: #fff !important;
         }
-        .paging-selecte:hover{
-            background-color: #4CAF50!important;
-            color: #fff!important;
+
+        .paging-selecte:hover {
+            background-color: #4CAF50 !important;
+            color: #fff !important;
         }
-        .paging input[type='text'],.paging input[type='button']{
+
+        .paging input[type='text'], .paging input[type='button'] {
             display: inline-block;
             margin-top: 0px;
-            border:1px solid #ccc;
+            border: 1px solid #ccc;
         }
-        .paging input[type='text']{
-            height:25px;
+
+        .paging input[type='text'] {
+            height: 25px;
             width: 50px;
             border-right: none;
         }
-        .paging input[type='button']{
-            height:29px;
+
+        .paging input[type='button'] {
+            height: 29px;
             border-left: none;
             background-color: #fff;
             cursor: pointer;
         }
-        .paging ul:nth-child(2){
+
+        .paging ul:nth-child(2) {
             margin-left: 10px;
         }
-        .a{
+
+        .a {
             font-family: "Microsoft YaHei", "微软雅黑", "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
             text-align: center;
             margin: 0 200px;
@@ -80,76 +91,84 @@
             border-radius: 10px;
             font-size: 16px;
             padding: 10px;
-            box-sizing:border-box;
+            box-sizing: border-box;
         }
-        .a p{
+
+        .a p {
             text-align: left;
             margin: 15px 100px;
-            line-height:30px;}
-        body{
+            line-height: 30px;
+        }
+
+        body {
             background-color: #f0f0f0;
         }
-        .header-right{
+
+        .header-right {
             line-height: 40px;
             color: #ffffff;
             cursor: pointer;
         }
 
-
-
-        .centerPage{
+        .centerPage {
             width: 95%;
             height: 85%;
             margin: 0 auto;
             padding-top: 10px;
         }
-        .messageTemplate{
+
+        .messageTemplate {
             height: 9%;
             background-color: #ffffff;
             margin-bottom: 0.5%;
             box-sizing: border-box;
             cursor: pointer;
         }
-        .TemplateTop{
+
+        .TemplateTop {
             width: 100%;
-            height: 40%;
-            background-color: #7EC4CC;
+            height: 35%;
+            background-color:  #84AF9B;
             font-size: 12px;
         }
-        .TemplateTopLeftName{
-          margin-left: 20px;
+
+        .TemplateTopLeftName {
+            margin-left: 20px;
             color: #ffffff;
             margin-right: 20px;
         }
-        .TemplateTopLeftPhone{
+
+        .TemplateTopLeftPhone {
             color: #ffffff;
         }
-        .TemplateDelete{
+
+        .TemplateDelete {
             margin-left: 20px;
             color: #c81623;
             margin-right: 20px;
         }
-        .TemplateTime{
+
+        .TemplateTime {
             color: #ffffff;
         }
-         .TemplateBottom{
-             text-align: center;
-             font-size: 12px;
-             line-height: 15px;
-             color: #232323;
-         }
 
+        .TemplateBottom {
+            padding-left: 2%;
+            font-size: 10px;
+            line-height: 15px;
+            color: #232323;
+            overflow-y: auto;
+        }
 
-
-
-        .paginationDiv{
+        .paginationDiv {
             width: 100%;
-            margin: 0  auto;
+            margin: 0 auto;
             text-align: center;
             position: absolute;
             bottom: 25px;
         }
-        .footer{
+
+        .footer {
             background-color: #BEBEBE;
         }
     </style>
@@ -166,7 +185,6 @@
     </div>
     <div class="center" id="center">
         <div class="centerPage" id="centerPage">
-
 
 
         </div>
@@ -186,6 +204,7 @@
         getDivWidth();
         getMessagePage();
     };
+
     //动态获得 中间的高度
     function getDivWidth() {
         var w = document.body.scrollHeight;
@@ -194,46 +213,46 @@
         center.style.height = (w - 60) + "px";
 
     }
+
     //获得留言显示
-    function getMessagePage(){
-        var P= window.location.search;
+    function getMessagePage() {
+        var P = window.location.search;
         var Page = P.slice(1);
         if (Page !== null) {
             jQuery.ajax({
                 type: 'POST',
                 url: 'getMessageList',
                 contentType: "application/x-www-form-urlencoded",
-                data:{Page:Page},
+                data: {Page: Page},
                 dataType: 'json',
                 success: function (data) {
                     var page = data.page;
                     var list = data.list;
-                    console.log(list)
                     $(".paging").Page({
-                        Pages:page,
-                        Page:Page,
-                        PageOn:function(e){
-                          window.location=("/MessageBoard.html?" + e)
+                        Pages: page,
+                        Page: Page,
+                        PageOn: function (e) {
+                            window.location = ("/MessageBoard.html?" + e)
                         },
-                        JumpOn:function(e){
-                            window.location=("/MessageBoard.html?" + e)
+                        JumpOn: function (e) {
+                            window.location = ("/MessageBoard.html?" + e)
                         },
-                        ActiveClass:"paging-selecte",
+                        ActiveClass: "paging-selecte",
                     });
-                    $(list).each(function (i,e) {
+                    $(list).each(function (i, e) {
 
                         $("#centerPage").append(" <div class=\"messageTemplate\" >\n" +
                             "                <div class=\"TemplateTop fl\">\n" +
                             "                    <div class=\"TemplateTopLeft fl\">\n" +
-                            "                        <div class=\"TemplateTopLeftName fl\"><span >用户名：</span> <span class='messageUserName'>"+e.messageUserName+"</span></div>\n" +
-                            "                        <div class=\"TemplateTopLeftPhone fl\"><span>电话：：</span><span>"+e.messagePhone+"</span></div>\n" +
+                            "                        <div class=\"TemplateTopLeftName fl\"><span >用户名：</span> <span class='messageUserName'>" + e.messageUserName + "</span></div>\n" +
+                            "                        <div class=\"TemplateTopLeftPhone fl\"><span>电话：：</span><span>" + e.messagePhone + "</span></div>\n" +
                             "                    </div>\n" +
                             "                    <div class=\"TemplateTopRight fr\">\n" +
                             "                        <div class=\"TemplateDelete fr\" >删除</div>\n" +
-                            "                        <div class=\"TemplateTime fr\"><span '>留言时间：</span><span class='messageTime'>"+e.messageTime+"</span></div>\n" +
+                            "                        <div class=\"TemplateTime fr\"><span '>留言时间：</span><span class='messageTime'>" + e.messageTime + "</span></div>\n" +
                             "                    </div>\n" +
                             "                </div>\n" +
-                            "                <div class=\"TemplateBottom\">"+e.messageContent+"</div>\n" +
+                            "                <div class=\"TemplateBottom\">" + e.messageContent + "</div>\n" +
                             "            </div>")
                     })
                 }
@@ -280,8 +299,6 @@
     $("#backHome").click(function () {
         window.location = "/"
     });
-
-
 
 
 </script>

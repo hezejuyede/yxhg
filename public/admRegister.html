@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>四川广安发电有限责任公司登录页面</title>
+    <title>PI实时数据分析系统管理员注册页面</title>
     <link rel="stylesheet" type="text/css" href="./css/base.css">
     <!--[if IE]>
     <script src="js/html5shiv.js"></script>
@@ -37,15 +37,16 @@
             height: 100px;
         }
 
-        .header-title {
-            float: left;
+        .headerBack {
+            margin-right: 50px;
+            cursor: pointer;
+            color: #409EFF;
         }
 
         .loginIndexCenter {
-            width: 1190px;
             height: 450px;
             margin: 0 auto;
-            background: url("img/admRegiter.jpg") no-repeat center center;
+            background: url("img/3.jpg") no-repeat center center;
             background-size: 100%;
             position: relative;
         }
@@ -186,10 +187,14 @@
 
 <div class="">
     <div class="header">
+        <div class="headerBack fl" id="headerBack">
+            <img src="./icon/back.png" alt="">
+            返回登陆页面
+        </div>
         <div class="header-img">
             <img src="./img/logo.png" alt="">
         </div>
-        <p class="">四川广安发电有限责任公司</p>
+        <p class="">PI实时数据分析系统管理员注册页面</p>
     </div>
     <div class="loginIndexCenter">
         <div class="loginIndexCenter-login">
@@ -245,7 +250,7 @@
         </div>
     </div>
     <div class="footer">
-        <span>@山东英伟电子技术有限公司开发维护</span>
+        <span>Copyright © 湖北兴发化工集团股份有限公司PI实时数据分析系统</span>
     </div>
 </div>
 
@@ -367,6 +372,10 @@
                 alert("信息填写不正确")
             }
         });
+
+        $("#headerBack").click(function () {
+            location.href = "/admLogin.html"
+        })
     });
 
 

@@ -39,6 +39,6 @@ app.post("/deleteMessage", IndexRouter.deleteMessage);           //动态获取�
 
 app.post("/downloadList", IndexRouter.downloadList);              //获取下载列表
 
-app.listen(3006);                                                 //监听3000端口
+app.listen(3007);                                                 //监听3000端口
 
 console.log("SERVER START");                                     //控制台打印服务器成功启动信息

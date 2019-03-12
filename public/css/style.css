@@ -4,7 +4,7 @@ body{
 }
 /*左侧颜色*/
 .main-left {
-    background-color: #cfcfcf;
+    background-color: #f7f7f7;
     border-right: 1px solid 	#E0E0E0;
 
 }
@@ -13,7 +13,7 @@ body{
 /*右侧颜色*/
 .main-right {
 
-    background-color: #cfcfcf;
+    background-color:#f7f7f7;
     border-left:1px solid 	#E0E0E0;
 
 }

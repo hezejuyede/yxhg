@@ -5,13 +5,13 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>四川广安发电有限责任公司下载页面</title>
+    <title>湖北兴发化工集团股份有限公司PI实时数据分析系统下载页面</title>
     <link rel="stylesheet" type="text/css" href="./css/zTreeStyle.css">
     <!--[if IE]>
     <script src="js/html5shiv.js"></script>
     <![endif]-->
     <style>
-        html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input, textarea, th, td, select iframe{
+        html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input, textarea, th, td, select iframe {
             margin: 0;
             padding: 0;
         }
@@ -19,7 +19,8 @@
         * {
             box-sizing: border-box;
         }
-        html{
+
+        html {
             width: 100%;
             height: 100%;
         }
@@ -40,29 +41,35 @@
             color: #ffffff;
             font-size: 20px;
         }
-        .header-back{
+
+        .header-back {
             float: left;
         }
-        .header a{
+
+        .header a {
             position: relative;
             left: 100px;
             color: #ffffff;
             text-decoration: none;
         }
+
         .main {
             background-color: #ffffff;
 
         }
-        .main-div-title{
+
+        .main-div-title {
             height: 50px;
             line-height: 50px;
             padding-left: 20px;
         }
-        .main-div-list{
-           height: 550px;
+
+        .main-div-list {
+            height: 550px;
             padding-left: 10px;
         }
-        .main-div{
+
+        .main-div {
             width: 90%;
             height: 600px;
             margin: auto;
@@ -100,7 +107,7 @@
     </div>
 </div>
 <div class="footer">
-    <p class="">Copyright © 2018 中国华电集团四川广安发电有限责任公司 版权所有,网站开发维护：山东英伟电子技术有限公司</p>
+    <p class="">Copyright © 湖北兴发化工集团股份有限公司版权所有</p>
 </div>
 <script src="js/jquery-1.4.4.min.js"></script>
 <script src="js/jquery.ztree.all.min.js"></script>
@@ -146,18 +153,22 @@
                             var filename = treeObj.name;
                             var pNode = treeObj.getParentNode();
                             if (pNode != null) {
-                                console.log(getFilePath(pNode))
                                 filename = getFilePath(pNode) + "/" + filename;
                             }
                             return filename;
                         }
-
                         var name = getFilePath(treeNode);
                         var url = "http://10.176.124.10/piweb/YWGADownload/" + name + " ";
-                        var a = document.createElement('a');
-                        a.setAttribute('download', '');
-                        a.setAttribute('href', url);
-                        a.click();
+                        if (!!window.ActiveXObject || "ActiveXObject" in window) {
+                            window.open(url, '_blank');
+                        }
+                        else {
+                            var a = document.createElement('a');
+                            a.setAttribute('download', '');
+                            a.setAttribute('href', url);
+                            a.setAttribute("target", "_blank");
+                            a.click();
+                        }
                     }
                 }
 
@@ -173,7 +184,6 @@
         var w = document.body.scrollHeight;
         var main = document.getElementById("main");
         main.style.height = (w - 60) + "px";
-
     }
 
 </script>

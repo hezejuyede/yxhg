@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>四川广安发电有限责任公司全部值主页</title>
+    <title>湖北兴发化工集团股份有限公司PI实时数据分析系统全部值主页</title>
     <link rel="stylesheet" type="text/css" href="./css/base.css">
     <script src="js/jquery-1.4.4.min.js"></script>
     <!--[if IE]>
@@ -73,6 +73,9 @@
             text-align: center;
             line-height: 50px;
             color: #333333;
+            overflow: hidden;
+            float: left;
+            font-size: 10px;
         }
 
 
@@ -134,22 +137,24 @@
                 jsonp: "callback",
                 jsonpCallback: "callBackName",
                 success: function (result) {
-                    $(result).each(function (index, el) {
-                        $(valueList).each(function (i, e) {
-                            if (result.Tag === valueList.Tag) {
-                                $("#bottom").append("<div class=\"allvalue-template\">\n" +
-                                    "                <div class=\"fl\">" + i + 1 + "</div>\n" +
-                                    "                <div class=\"fl\">" + el.Tag + "</div>\n" +
-                                    "                <div class=\"fl\">" + el.TagName + "</div>\n" +
-                                    "                <div class=\"fl\">" + e.Max + "</div>\n" +
-                                    "                <div class=\"fl\">" + e.Min + "</div>\n" +
-                                    "                <div class=\"fl\">" + e.Limith + "</div>\n" +
-                                    "                <div class=\"fl\">" + e.Limitl + "</div>\n" +
-                                    "                <div class=\"fl\">" + el.CurrentValue + "</div>\n" +
-                                    "            </div>")
-                            }
-                        })
-                    });
+                    if (result !== "") {
+                        $(result).each(function (index, el) {
+                            $("#bottom").append("<div class=\"allvalue-template\">\n" +
+                                "                <div>" + index + 1 + "</div>\n" +
+                                "                <div>" + el.Tag + "</div>\n" +
+                                "                <div>" + el.TagName + "</div>\n" +
+                                "                <div>" + el.Max + "</div>\n" +
+                                "                <div>" + el.Min + "</div>\n" +
+                                "                <div>" + el.Limith + "</div>\n" +
+                                "                <div>" + el.Limitl + "</div>\n" +
+                                "                <div>" + el.CurrentValue + "</div>\n" +
+                                "            </div>")
+                        });
+                    }
+                    else {
+                        alert("这些点在PI数据库中没有数据");
+                        window.location = "/";
+                    }
                 }
             });
         }

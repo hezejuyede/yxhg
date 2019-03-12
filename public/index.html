@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>四川广安发电有限责任公司监控主页</title>
+    <title>湖北兴发化工集团股份有限公司PI实时数据分析系统</title>
     <link rel="stylesheet" type="text/css" href="./css/base.css">
     <link rel="stylesheet" type="text/css" href="./css/index.css">
     <link rel="stylesheet" type="text/css" href="./css/zTreeStyle.css">
@@ -13,17 +13,15 @@
     <!--[if IE]>
     <script src="js/html5shiv.js"></script>
     <![endif]-->
-    <style>
-
-    </style>
 </head>
 <body style="overflow:scroll;overflow-y:hidden;overflow-x: hidden">
-<div class="YW-home">
+<div class="YW-home" id="YWHome">
     <div class="header">
         <div class="header-left">
-            <img src="img/logoIndex1.png" style="height: 30px;margin-top: 5px" class="fl">
-            <p class="fl" style="margin-left: 50px;font-size: 20px">生产监控系统</p>
+            <img src="img/logo1.png" style="height: 30px;margin-top: 5px" class="fl">
+            <p class="fl" style="margin-left: 50px;font-size: 20px">PI实时数据分析系统</p>
             <a href="/download.html"><img src='../icon/download.png' style="height: 30px"/><span>下载页面</span></a>
+            <a href="/help.html"><img src='../icon/help.png' style="height: 30px"/><span>帮助文档</span></a>
         </div>
         <div class="header-right">
             <div id="login">
@@ -34,6 +32,7 @@
     </div>
     <div class="clearfix main" id="main">
         <div class="main-left" id="main-left">
+            <div class="main-left-title">监控选择区</div>
             <ul id="tree" class="ztree"></ul>
         </div>
         <div class="main-center" id="main-center">
@@ -59,32 +58,35 @@
         </div>
         <div class="main-right" id="main-right">
             <div class="MaxMinValue">
+                <div class="MaxMinValue-title">报警监控区</div>
                 <div class="MaxMinValue-list" id="MaxMinValueList"></div>
-                <div class="JKValue">
-                    <button id="ShowMonitor">设置监控</button>
-                    <button id="ShowAllMonitor">查看全部点</button>
-                </div>
             </div>
             <div class="clickSend">
-                <div class="userNoLogin">
-                    <div class="operation">
-                        <div class="narrow fl" id="narrow">
-                            <img src='icon/sx.png' style='height: 20px'></img>
-                            <span>缩小</span>
-                            <span id="SBei" style="font-size: 0">1</span>
-                        </div>
-                        <div class="enlarge fl" id="enlarge">
-                            <img src='icon/fd.png' style='height: 20px'></img>
-                            <span>放大</span>
-                            <span id="FBei" style="font-size: 0">1</span>
-                        </div>
+                <div class="JKValue">
+                    <button id="ShowMonitor" class="ShowMonitor">设置监控</button>
+                    <button id="ShowAllMonitor" class="ShowAllMonitor">查看全部点</button>
+                </div>
+                <div class="startStopDiv">
+                    <div class="stopDiv fl" id="stopDiv">
+                        <img src="icon/stop.png" alt="">
+                        <span>暂停监控</span>
+                    </div>
+                    <div class="startDiv fl" id="startDiv">
+                        <img src="icon/start.png" alt="">
+                        <span>继续监控</span>
                     </div>
                 </div>
-                <div class="TimedRefresh">
-                    <span>定时刷新</span>
-                    <input type="number" id="time"> 分钟
-                    <button id="TimedRefresh">定</button>
-                    <button id="removeTimedRefresh">解</button>
+                <div class="operationDiv">
+                    <div class="narrow fl" id="narrow">
+                        <img src='icon/sx.png'>
+                        <span>缩小图形</span>
+                        <span id="SBei" style="font-size: 0">1</span>
+                    </div>
+                    <div class="enlarge fl" id="enlarge">
+                        <img src='icon/fd.png'>
+                        <span>放大图形</span>
+                        <span id="FBei" style="font-size: 0">1</span>
+                    </div>
                 </div>
                 <div class="" id="BJSY"></div>
                 <div class="">
@@ -95,8 +97,8 @@
                         <param id="DisplayURL" name="FileName" value="audio/YX.mp3"/>
                     </object>
                 </div>
-                <div class="userLogin" id="userLogin">
-                    <div class="userLogin-top">反馈留言区</div>
+                <div class="userMessage" id="userLogin">
+                    <div class="userMessage-top">反馈留言区</div>
                     <textarea id="txt"></textarea><br>
                     <button id="send">发送</button>
                 </div>
@@ -127,7 +129,7 @@
                     最大值:
                 </div>
                 <div class="fl input">
-                    <input type="text" id="max">
+                    <input type="number" name="number" id="max">
                 </div>
                 <div class="fl" style="margin-left: 15px">
                     弹出报警:<input type="checkbox" id="ZD">
@@ -141,7 +143,7 @@
                     上限值:
                 </div>
                 <div class="fl input">
-                    <input type="text" id="szMax">
+                    <input type="number" name="number" id="szMax">
                 </div>
                 <div class="fl" style="margin-left: 15px">
                     弹出报警:<input type="checkbox" id="SX">
@@ -155,7 +157,7 @@
                     下限值:
                 </div>
                 <div class="fl input">
-                    <input type="text" id="szMin">
+                    <input type="number" name="number" id="szMin">
                 </div>
                 <div class="fl" style="margin-left: 15px">
                     弹出报警:<input type="checkbox" id="XX">
@@ -169,17 +171,22 @@
                     最小值:
                 </div>
                 <div class="fl input">
-                    <input type="text" id="min">
+                    <input type="number" name="number" id="min">
                 </div>
                 <div class="fl" style="margin-left: 15px">
                     弹出报警:<input type="checkbox" id="ZX">
                 </div>
             </div>
+            <div class="clearfix modal-div-template">
+                <div class="fl"><img src="icon/time.png" alt="" style="height: 20px"></div>
+                <div class="fl">弹出报警时间设定(秒):</div>
+                <div class="fl"><input type="number" name="number" id="TcSj" style="padding-left: 10px"></div>
+            </div>
             <button id="Monitor">确定监控</button>
         </div>
     </div>
     <div class="footer">
-        <p class="">Copyright © 2018 中国华电集团四川广安发电有限责任公司 版权所有,网站开发维护：山东英伟电子技术有限公司</p>
+        <p class="">Copyright © 湖北兴发化工集团股份有限公司PI实时数据分析系统</p>
     </div>
 </div>
 <script src="js/jquery-1.4.4.min.js"></script>
