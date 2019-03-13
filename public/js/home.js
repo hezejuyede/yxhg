@@ -82,10 +82,10 @@ function getObjectValue() {
     u = JSON.parse(URL);
     url = encodeURI(u);
     if (URL == null || URL == "") {
-        $("#iframe").html("<object classid=\"clsid:4F26B906-2854-11D1-9597-00A0C931BFC8\" id=\"Pbd1\" width=\"100%\" height=\"100%\"><param name=\"_cx\" value=\"24262\"><param name=\"_cy\" value=\"16140\"><param name=\"ServerIniURL\" value><param name=\"DisplayURL\" value='http://10.176.124.10/piweb/0001.PDI'></object>")
+        $("#iframe").html("<object classid=\"clsid:4F26B906-2854-11D1-9597-00A0C931BFC8\" id=\"Pbd1\" width=\"100%\" height=\"100%\"><param name=\"_cx\" value=\"24262\"><param name=\"_cy\" value=\"16140\"><param name=\"ServerIniURL\" value><param name=\"DisplayURL\" value='http://192.168.1.12/piweb/0001.PDI'></object>")
     }
     else {
-        $("#iframe").html("<object classid=\"clsid:4F26B906-2854-11D1-9597-00A0C931BFC8\" id=\"Pbd1\" width=\"100%\" height=\"100%\"><param name=\"_cx\" value=\"24262\"><param name=\"_cy\" value=\"16140\"><param name=\"ServerIniURL\" value><param name=\"DisplayURL\" value='http://10.176.124.10/piweb/YWGA/" + url + ".PDI'></object>")
+        $("#iframe").html("<object classid=\"clsid:4F26B906-2854-11D1-9597-00A0C931BFC8\" id=\"Pbd1\" width=\"100%\" height=\"100%\"><param name=\"_cx\" value=\"24262\"><param name=\"_cy\" value=\"16140\"><param name=\"ServerIniURL\" value><param name=\"DisplayURL\" value='http://192.168.1.12/piweb/YWGA/" + url + ".PDI'></object>")
     }
 
 }
@@ -177,7 +177,7 @@ function getLeftNav() {
                             var url = localStorage.getItem("URL", URL);
                             u = JSON.parse(url);
                             url = encodeURI(u);
-                            $("#iframe").html("<object classid=\"clsid:4F26B906-2854-11D1-9597-00A0C931BFC8\" id=\"Pbd1\" width=\"100%\" height=\"100%\"><param name=\"_cx\" value=\"24262\"><param name=\"_cy\" value=\"16140\"><param name=\"ServerIniURL\" value><param name=\"DisplayURL\" value='http://10.176.124.10/piweb/YWGA/" + url + ".PDI'></object>")
+                            $("#iframe").html("<object classid=\"clsid:4F26B906-2854-11D1-9597-00A0C931BFC8\" id=\"Pbd1\" width=\"100%\" height=\"100%\"><param name=\"_cx\" value=\"24262\"><param name=\"_cy\" value=\"16140\"><param name=\"ServerIniURL\" value><param name=\"DisplayURL\" value='http://192.168.1.12/piweb/YWGA/" + url + ".PDI'></object>")
                         }
                     });
                 }
