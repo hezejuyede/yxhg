@@ -121,6 +121,9 @@
 <script>
     //获取值的详情
     $(function getValue() {
+        var IP = window.location.host;
+        ip = IP.substring(0, IP.length - 5);
+
         var MaxMinValue = localStorage.getItem("MaxMinValue");
         if (MaxMinValue == null || MaxMinValue == "") {
             window.location = "/"
@@ -130,7 +133,7 @@
             var valueList = jsonstrs.valueList;
             var valueStr = JSON.stringify(valueList);
             jQuery.ajax({
-                url: 'http://10.176.124.10:8099/allValue.ashx',
+                url: "http://" + ip + ":8083/allValue.ashx",
                 type: 'get',
                 data: {"valueList": valueStr},
                 dataType: "jsonp",

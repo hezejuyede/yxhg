@@ -44,19 +44,22 @@
             margin: 10px auto;
             color: #232323;
         }
-        #value div{
+
+        #value div {
             width: 200px;
             height: 50px;
             overflow: hidden;
             overflow-y: auto;
         }
-        #name div{
+
+        #name div {
             float: left;
             width: 200px;
             height: 50px;
             overflow: hidden;
             overflow-y: auto;
         }
+
         .max {
             width: 95%;
             height: 50px;
@@ -114,7 +117,7 @@
         <img src="icon/GB.png">
     </div>
     <div class="value-div">
-        <div class="value" >
+        <div class="value">
             <div class="fl">
                 <img src="icon/SZ.png" style="height: 25px;margin-left: 20px;margin-right: 5px">
                 <span style="margin-right: 15px">值代码：</span>
@@ -123,7 +126,7 @@
 
             </div>
         </div>
-        <div class="value" >
+        <div class="value">
             <div class="fl">
                 <img src="icon/mz.png" style="height: 23px;margin-left: 20px;margin-right: 5px">
                 <span style="margin-right: 15px">值名称：</span>
@@ -133,7 +136,7 @@
             </div>
         </div>
 
-        <div class="max" >
+        <div class="max">
             <div class="fl">
                 <img src="icon/max.png" style="height: 25px;margin-left: 20px;margin-right: 5px">
                 <span style="margin-right: 15px">最大值：</span>
@@ -143,7 +146,7 @@
 
             </div>
         </div>
-        <div class="min" >
+        <div class="min">
             <div class="fl">
                 <img src="icon/min.png" style="height: 25px;margin-left: 20px;margin-right: 5px">
                 <span style="margin-right: 15px">最小值：</span>
@@ -153,7 +156,7 @@
 
             </div>
         </div>
-        <div class="sx" >
+        <div class="sx">
             <div class="fl">
                 <img src="icon/SAX.png" style="height: 25px;margin-left: 20px;margin-right: 5px">
                 <span style="margin-right: 15px">上线值：</span>
@@ -163,7 +166,7 @@
 
             </div>
         </div>
-        <div class="xx" >
+        <div class="xx">
             <div class="fl">
                 <img src="icon/XX.png" style="height: 25px;margin-left: 20px;margin-right: 5px">
                 <span style="margin-right: 15px">下线值：</span>
@@ -178,7 +181,7 @@
                 <img src="icon/dq.png" style="height: 25px;margin-left: 20px;margin-right: 5px">
                 <span style="margin-right: 15px">当前值：</span>
             </div>
-            <div class="fl"  id="dq">
+            <div class="fl" id="dq">
 
             </div>
         </div>
@@ -189,6 +192,9 @@
 
     //获取值的详情
     $(function getValue() {
+        var IP = window.location.host;
+        ip = IP.substring(0, IP.length - 5);
+
         var URL = window.location.search;
         var value = URL.slice(1);
         var Value = localStorage.getItem("MaxMinValue");
@@ -197,14 +203,14 @@
         $(valueList).each(function (i, e) {
             if (e.Tag === value) {
                 jQuery.ajax({
-                    url: 'http://10.176.124.10:8099/ValueInfo.ashx',
+                    url: "http://" + ip + ":8083/ValueInfo.ashx",
                     type: 'GET',
                     data: {"Tag": value},
                     dataType: "jsonp",
                     jsonp: "callback",
                     jsonpCallback: "callBackName",
                     success: function (result) {
-                        if (result !=="") {
+                        if (result !== "") {
                             $("#value").append("<div>" + result.Tag + "</div>");
                             $("#name").append("<div>" + result.TagName + "</div>");
                             $("#max").append("<div>" + e.Max + "</div>");
